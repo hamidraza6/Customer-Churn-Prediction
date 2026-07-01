@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- ── HERO ───────────────────────────────────────────────────────────────── -->
+<section class="hero-section d-flex align-items-center" id="hero">
+  <div class="hero-bg-overlay"></div>
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="container position-relative z-1">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+        <div class="hero-badge mb-3"><i class="bi bi-stars"></i> AI-Powered Analytics</div>
+        <h1 class="hero-title">Predict Customer<br /><span class="gradient-text">Churn</span> Before It Happens</h1>
+        <p class="hero-subtitle mt-3">Leverage cutting-edge machine learning to identify at-risk customers and take proactive action to boost retention rates and revenue.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="{{ url_for('predict_page') }}" class="btn btn-primary-custom btn-lg px-5 py-3">
+            <i class="bi bi-lightning-fill me-2"></i>Start Predicting
+          </a>
+          <a href="{{ url_for('features_page') }}" class="btn btn-outline-custom btn-lg px-5 py-3">
+            <i class="bi bi-info-circle me-2"></i>Learn More
+          </a>
+        </div>
+        <div class="hero-stats d-flex flex-wrap gap-4 mt-5">
+          <div class="stat-item"><div class="stat-value">95%+</div><div class="stat-label">Accuracy</div></div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><div class="stat-value">19</div><div class="stat-label">Features</div></div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><div class="stat-value">5</div><div class="stat-label">ML Models</div></div>
+        </div>
+      </div>
+      <div class="col-lg-6 d-flex justify-content-center">
+        <div class="hero-card-wrapper">
+          <div class="hero-glass-card">
+            <div class="hgc-header"><i class="bi bi-bar-chart-fill me-2"></i>Live Model Metrics</div>
+            <div class="hgc-metric"><span>Model</span><span class="badge-metric">Random Forest</span></div>
+            <div class="hgc-metric"><span>Accuracy</span><span class="badge-metric green">95.2%</span></div>
+            <div class="hgc-metric"><span>Precision</span><span class="badge-metric blue">94.7%</span></div>
+            <div class="hgc-metric"><span>Recall</span><span class="badge-metric purple">93.1%</span></div>
+            <div class="hgc-metric"><span>F1-Score</span><span class="badge-metric orange">93.9%</span></div>
+            <div class="hgc-metric"><span>AUC-ROC</span><span class="badge-metric green">0.982</span></div>
+            <div class="hgc-pulse mt-3"><span class="pulse-dot"></span> Model Active & Ready</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Features - Customer Churn Predictor{% endblock %}
+
+{% block content %}
+<div class="pt-5 mt-5">
+<!-- ── FEATURES ───────────────────────────────────────────────────────────── -->
+<section class="features-section py-5" id="features">
+  <div class="container py-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-tag">Why ChurnAI?</div>
+      <h2 class="section-title">Powered by Advanced <span class="gradient-text">Machine Learning</span></h2>
+      <p class="section-subtitle">Our system uses an ensemble of battle-tested algorithms trained on real telecom data.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="fc-icon" style="--clr:#6366f1"><i class="bi bi-cpu"></i></div>
+          <h5 class="fc-title">Multi-Model Pipeline</h5>
+          <p class="fc-text">Logistic Regression, Decision Tree, Random Forest, Gradient Boosting & XGBoost trained and compared.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="fc-icon" style="--clr:#10b981"><i class="bi bi-shield-check"></i></div>
+          <h5 class="fc-title">Hyperparameter Tuned</h5>
+          <p class="fc-text">GridSearchCV and Cross-Validation ensure peak performance with no overfitting.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="fc-icon" style="--clr:#f59e0b"><i class="bi bi-pie-chart"></i></div>
+          <h5 class="fc-title">Full Probability Score</h5>
+          <p class="fc-text">Not just Yes/No — get exact churn probability with risk-level categorization.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="fc-icon" style="--clr:#ef4444"><i class="bi bi-lightning"></i></div>
+          <h5 class="fc-title">Real-Time Inference</h5>
+          <p class="fc-text">Instant predictions via REST API. No page reload needed — results appear live.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}About - Customer Churn Predictor{% endblock %}
+
+{% block content %}
+<div class="pt-5 mt-5">
+<!-- ── ABOUT ───────────────────────────────────────────────────────────── -->
+<section class="about-section py-5" id="about">
+  <div class="container py-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-tag">About the Project</div>
+      <h2 class="section-title">Behind <span class="gradient-text">ChurnAI</span></h2>
+      <p class="section-subtitle">Understanding the technology and the mission.</p>
+    </div>
+    
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+        <h3 class="mb-4">Mission Statement</h3>
+        <p class="lead">Our goal is to help businesses retain their most valuable asset: their customers. By leveraging predictive analytics, we empower organizations to identify at-risk customers early and take proactive steps to improve satisfaction and loyalty.</p>
+        <p>Customer churn can severely impact revenue. However, identifying the signals of churn manually is almost impossible given the large volume of data. ChurnAI solves this by analyzing usage patterns, billing information, and demographic data in real-time.</p>
+        <div class="mt-4">
+          <ul class="list-unstyled">
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Proactive Action:</strong> Intervene before the customer leaves.</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Data-Driven:</strong> Make decisions based on robust machine learning models.</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Scalable:</strong> Designed to process large datasets quickly.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="p-4 rounded-4 shadow-sm" style="background: var(--dark-surface); border: 1px solid var(--border-glass);">
+          <h4 class="mb-3" style="color: var(--text-primary);"><i class="bi bi-person-workspace me-2 text-primary"></i>The Team</h4>
+          <p style="color: var(--text-secondary);">This application was developed as a robust End-to-End Machine Learning project, demonstrating the integration of a trained Random Forest classifier within a modern, responsive Flask web application.</p>
+          <hr style="border-color: var(--border-glass);">
+          <h4 class="mb-3 mt-4" style="color: var(--text-primary);"><i class="bi bi-laptop me-2 text-primary"></i>Technology Stack</h4>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="ftag py-2 px-3 fs-6">Python 3.10</span>
+            <span class="ftag py-2 px-3 fs-6">Flask 3.0</span>
+            <span class="ftag py-2 px-3 fs-6">Scikit-learn</span>
+            <span class="ftag py-2 px-3 fs-6">Pandas</span>
+            <span class="ftag py-2 px-3 fs-6">NumPy</span>
+            <span class="ftag py-2 px-3 fs-6">Bootstrap 5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+{% endblock %}

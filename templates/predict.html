@@ -1,0 +1,369 @@
+{% extends 'base.html' %}
+
+{% block title %}Predict - Customer Churn Predictor{% endblock %}
+
+{% block content %}
+<div class="pt-5 mt-4">
+<!-- ── PREDICTION FORM ─────────────────────────────────────────────────────── -->
+<section class="predict-section py-5" id="predict">
+  <div class="container py-4">
+    <div class="section-header text-center mb-5">
+      <div class="section-tag">Prediction Engine</div>
+      <h2 class="section-title">Enter <span class="gradient-text">Customer Details</span></h2>
+      <p class="section-subtitle">Fill in the form below and our AI model will instantly assess churn risk.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <div class="form-glass-card">
+
+          <!-- Error Alert -->
+          <div class="alert alert-danger d-none" id="errorAlert" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <span id="errorMessage"></span>
+          </div>
+
+          <form id="churnForm" novalidate>
+
+            <!-- Section: Account Info -->
+            <div class="form-section-title"><i class="bi bi-person-badge me-2"></i>Account Information</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-4">
+                <label class="form-label-custom" for="tenure">Tenure (Months)</label>
+                <div class="input-group-custom">
+                  <i class="bi bi-calendar3 input-icon"></i>
+                  <input type="number" class="form-control form-control-custom" id="tenure" name="tenure" min="0" max="120" placeholder="e.g. 24" required />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="MonthlyCharges">Monthly Charges ($)</label>
+                <div class="input-group-custom">
+                  <i class="bi bi-currency-dollar input-icon"></i>
+                  <input type="number" step="0.01" class="form-control form-control-custom" id="MonthlyCharges" name="MonthlyCharges" min="0" placeholder="e.g. 79.50" required />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="TotalCharges">Total Charges ($)</label>
+                <div class="input-group-custom">
+                  <i class="bi bi-cash-stack input-icon"></i>
+                  <input type="number" step="0.01" class="form-control form-control-custom" id="TotalCharges" name="TotalCharges" min="0" placeholder="e.g. 1900.00" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section: Demographics -->
+            <div class="form-section-title"><i class="bi bi-people me-2"></i>Demographics</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-3">
+                <label class="form-label-custom" for="gender">Gender</label>
+                <select class="form-select form-select-custom" id="gender" name="gender" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label-custom" for="SeniorCitizen">Senior Citizen</label>
+                <select class="form-select form-select-custom" id="SeniorCitizen" name="SeniorCitizen" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label-custom" for="Partner">Partner</label>
+                <select class="form-select form-select-custom" id="Partner" name="Partner" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label-custom" for="Dependents">Dependents</label>
+                <select class="form-select form-select-custom" id="Dependents" name="Dependents" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Section: Services -->
+            <div class="form-section-title"><i class="bi bi-wifi me-2"></i>Services Subscribed</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-4">
+                <label class="form-label-custom" for="PhoneService">Phone Service</label>
+                <select class="form-select form-select-custom" id="PhoneService" name="PhoneService" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="MultipleLines">Multiple Lines</label>
+                <select class="form-select form-select-custom" id="MultipleLines" name="MultipleLines" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                  <option value="2">No Phone Service</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="InternetService">Internet Service</label>
+                <select class="form-select form-select-custom" id="InternetService" name="InternetService" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="0">DSL</option>
+                  <option value="1">Fiber Optic</option>
+                  <option value="2">No</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="OnlineSecurity">Online Security</label>
+                <select class="form-select form-select-custom" id="OnlineSecurity" name="OnlineSecurity" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                  <option value="2">No Internet</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="OnlineBackup">Online Backup</label>
+                <select class="form-select form-select-custom" id="OnlineBackup" name="OnlineBackup" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                  <option value="2">No Internet</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="DeviceProtection">Device Protection</label>
+                <select class="form-select form-select-custom" id="DeviceProtection" name="DeviceProtection" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                  <option value="2">No Internet</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="TechSupport">Tech Support</label>
+                <select class="form-select form-select-custom" id="TechSupport" name="TechSupport" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                  <option value="2">No Internet</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="StreamingTV">Streaming TV</label>
+                <select class="form-select form-select-custom" id="StreamingTV" name="StreamingTV" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                  <option value="2">No Internet</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="StreamingMovies">Streaming Movies</label>
+                <select class="form-select form-select-custom" id="StreamingMovies" name="StreamingMovies" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                  <option value="2">No Internet</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Section: Contract -->
+            <div class="form-section-title"><i class="bi bi-file-text me-2"></i>Contract & Billing</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-4">
+                <label class="form-label-custom" for="Contract">Contract Type</label>
+                <select class="form-select form-select-custom" id="Contract" name="Contract" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="0">Month-to-Month</option>
+                  <option value="1">One Year</option>
+                  <option value="2">Two Year</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="PaperlessBilling">Paperless Billing</label>
+                <select class="form-select form-select-custom" id="PaperlessBilling" name="PaperlessBilling" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label-custom" for="PaymentMethod">Payment Method</label>
+                <select class="form-select form-select-custom" id="PaymentMethod" name="PaymentMethod" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="0">Bank Transfer (Auto)</option>
+                  <option value="1">Credit Card (Auto)</option>
+                  <option value="2">Electronic Check</option>
+                  <option value="3">Mailed Check</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-predict btn-lg px-5 py-3" id="predictBtn">
+                <span class="btn-text"><i class="bi bi-lightning-fill me-2"></i>Predict Churn Risk</span>
+                <span class="btn-spinner d-none"><span class="spinner-border spinner-border-sm me-2"></span>Analyzing...</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- ── RESULT CARD ──────────────────────────────────────────────────── -->
+        <div class="result-wrapper d-none mt-5" id="resultSection">
+          <div class="result-glass-card" id="resultCard">
+            <div class="result-header text-center mb-4">
+              <div class="result-icon" id="resultIcon"></div>
+              <h2 class="result-title" id="resultTitle"></h2>
+              <p class="result-subtitle" id="resultSubtitle"></p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+              <div class="col-md-5">
+                <div class="prob-card churn-prob">
+                  <div class="prob-label"><i class="bi bi-exclamation-circle me-1"></i>Churn Probability</div>
+                  <div class="prob-value" id="churnProb">0%</div>
+                  <div class="prob-bar-track"><div class="prob-bar-fill danger" id="churnBar"></div></div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="prob-card retain-prob">
+                  <div class="prob-label"><i class="bi bi-check-circle me-1"></i>Retention Probability</div>
+                  <div class="prob-value" id="retainProb">0%</div>
+                  <div class="prob-bar-track"><div class="prob-bar-fill success" id="retainBar"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="risk-badge-wrapper text-center mt-4">
+              <span class="risk-badge" id="riskBadge"></span>
+            </div>
+
+            <div class="result-tip mt-4" id="resultTip"></div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-outline-custom px-4" onclick="resetForm()">
+                <i class="bi bi-arrow-counterclockwise me-2"></i>New Prediction
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// ── Form submission ───────────────────────────────────────────────────────────
+document.getElementById('churnForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn        = document.getElementById('predictBtn');
+  const btnText    = btn.querySelector('.btn-text');
+  const btnSpinner = btn.querySelector('.btn-spinner');
+  const errorAlert = document.getElementById('errorAlert');
+  const errorMsg   = document.getElementById('errorMessage');
+  const resultSection = document.getElementById('resultSection');
+
+  // Hide previous results & errors
+  errorAlert.classList.add('d-none');
+  resultSection.classList.add('d-none');
+
+  // Show spinner
+  btn.disabled = true;
+  btnText.classList.add('d-none');
+  btnSpinner.classList.remove('d-none');
+
+  try {
+    const formData = new FormData(this);
+    const response = await fetch('/predict', { method: 'POST', body: formData });
+    const data     = await response.json();
+
+    if (!data.success) {
+      const msgs = data.errors ? data.errors.join(' | ') : (data.error || 'Unknown error.');
+      errorMsg.textContent = msgs;
+      errorAlert.classList.remove('d-none');
+    } else {
+      renderResult(data);
+      resultSection.classList.remove('d-none');
+      resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } catch (err) {
+    errorMsg.textContent = 'Network error. Please try again.';
+    errorAlert.classList.remove('d-none');
+  } finally {
+    btn.disabled = false;
+    btnText.classList.remove('d-none');
+    btnSpinner.classList.add('d-none');
+  }
+});
+
+// ── Render result ─────────────────────────────────────────────────────────────
+function renderResult(data) {
+  const isChurn   = data.prediction === 1;
+  const card      = document.getElementById('resultCard');
+  const icon      = document.getElementById('resultIcon');
+  const title     = document.getElementById('resultTitle');
+  const subtitle  = document.getElementById('resultSubtitle');
+  const churnProb = document.getElementById('churnProb');
+  const retainProb= document.getElementById('retainProb');
+  const churnBar  = document.getElementById('churnBar');
+  const retainBar = document.getElementById('retainBar');
+  const riskBadge = document.getElementById('riskBadge');
+  const tip       = document.getElementById('resultTip');
+
+  card.className = 'result-glass-card ' + (isChurn ? 'result-churn' : 'result-safe');
+  icon.innerHTML = isChurn
+    ? '<i class="bi bi-exclamation-triangle-fill"></i>'
+    : '<i class="bi bi-shield-check-fill"></i>';
+  icon.className = 'result-icon ' + (isChurn ? 'icon-danger' : 'icon-success');
+  title.textContent   = isChurn ? '⚠️ Customer Likely to Churn' : '✅ Customer Will Likely Stay';
+  subtitle.textContent= isChurn
+    ? 'Immediate retention action is recommended.'
+    : 'This customer shows strong retention signals.';
+
+  churnProb.textContent  = data.churn_probability + '%';
+  retainProb.textContent = data.no_churn_probability + '%';
+
+  // Animate bars
+  setTimeout(() => {
+    churnBar.style.width  = data.churn_probability + '%';
+    retainBar.style.width = data.no_churn_probability + '%';
+  }, 100);
+
+  const riskColors = { 'High Risk': 'badge-danger', 'Medium Risk': 'badge-warning', 'Low Risk': 'badge-success' };
+  riskBadge.textContent = data.risk_level;
+  riskBadge.className   = 'risk-badge ' + (riskColors[data.risk_level] || '');
+
+  const tips = {
+    'High Risk'  : '💡 <strong>Recommendation:</strong> Offer a personalized discount, loyalty reward, or extended contract to retain this customer immediately.',
+    'Medium Risk': '💡 <strong>Recommendation:</strong> Engage with targeted promotions or support outreach to strengthen customer loyalty.',
+    'Low Risk'   : '💡 <strong>Recommendation:</strong> Maintain current service quality and consider upselling premium features.',
+  };
+  tip.innerHTML = tips[data.risk_level] || '';
+}
+
+// ── Reset form ────────────────────────────────────────────────────────────────
+function resetForm() {
+  document.getElementById('churnForm').reset();
+  document.getElementById('resultSection').classList.add('d-none');
+  document.getElementById('errorAlert').classList.add('d-none');
+  document.getElementById('churnBar').style.width  = '0%';
+  document.getElementById('retainBar').style.width = '0%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+{% endblock %}
+
+{% block footer %}{% endblock %}
