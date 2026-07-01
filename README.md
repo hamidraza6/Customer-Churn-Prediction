@@ -6,7 +6,6 @@
 ![Flask](https://img.shields.io/badge/Flask-3.0.3-black?style=flat-square&logo=flask)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.5.1-orange?style=flat-square&logo=scikit-learn)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?style=flat-square&logo=bootstrap)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 ---
 
