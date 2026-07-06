@@ -17,7 +17,7 @@ This project builds a **production-ready churn prediction system** that:
 
 ![image alt](https://github.com/hamidraza6/Customer-Churn-Prediction/blob/c06069ba8dc5f44fec7c2fd32c482683ec4ba2a7/Screenshot%202026-07-06%20145348.png)
 
-![image alt]()
+![image alt](https://github.com/hamidraza6/Customer-Churn-Prediction/blob/11004085da7d9e60c2eb2b571e53a8738ca8c642/Screenshot%202026-07-06%20151554.png)
 
 - Ingests customer data (demographics, services, billing)
 - Trains and compares 5 ML models
