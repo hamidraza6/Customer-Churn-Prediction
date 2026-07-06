@@ -14,6 +14,7 @@
 Customer churn — when a customer stops doing business with a company — costs the telecom industry billions annually. Acquiring a new customer is **5–25× more expensive** than retaining an existing one.
 
 This project builds a **production-ready churn prediction system** that:
+https://github.com/hamidraza6/Customer-Churn-Prediction/blob/main/Screenshot%202026-07-06%20145348.png
 - Ingests customer data (demographics, services, billing)
 - Trains and compares 5 ML models
 - Serves real-time predictions via a Flask REST API
